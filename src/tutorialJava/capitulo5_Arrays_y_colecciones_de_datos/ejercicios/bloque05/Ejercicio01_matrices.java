@@ -6,13 +6,14 @@ public class Ejercicio01_matrices {
 		int array[] = new int[] {23, 12, 67};
 		
 		// Declaración de una matriz de 3 x 3
-		int matriz[][] = new int[][] {{10, 20, 30}, 
-									  {40, 50, 60}, 
-									  {70, 80, 90}};
+		int matriz[][] = new int[][] {{1, 0, 0}, 
+									  {0, 5, 0}, 
+									  {0, 0, 9}};
 
 		muestraMatriz(matriz);
 		
 		System.out.println("Matriz positiva: " + esMatrizPositiva(matriz));
+		System.out.println("Matriz diagonal: " + esMatrizDiagonal(matriz));
 	}
 
 	
@@ -21,16 +22,32 @@ public class Ejercicio01_matrices {
 	 * @param matriz
 	 * @return
 	 */
-	public static boolean esMatrizPositiva(int matriz[][]) {
-		boolean resultado = true;
+	public static boolean esMatrizDiagonal (int matriz[][]) {
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[i].length; j++) {
-				if (matriz[i][j] < 0) {
-					resultado = false;
+				if(i != j && matriz[i][j] != 0) {
+					return false;
 				}
 			}
 		}
-		return resultado;
+		return true;
+	}
+	
+	
+	/**
+	 * 
+	 * @param matriz
+	 * @return
+	 */
+	public static boolean esMatrizPositiva(int matriz[][]) {
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				if (matriz[i][j] < 0) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 	
 	
