@@ -1,0 +1,40 @@
+package tutorialJava.capitulo4_OrientacionAObjetos.ejemplo02_animales;
+
+public class Animal {
+
+	private String colorPelo;
+	private int numeroPatas;
+	
+	public Animal() {
+		super();
+	}
+
+	public Animal(String colorPelo, int numeroPatas) {
+		super();
+		this.colorPelo = colorPelo;
+		this.numeroPatas = numeroPatas;
+	}
+
+	public String getColorPelo() {
+		return colorPelo;
+	}
+
+	public void setColorPelo(String colorPelo) {
+		this.colorPelo = colorPelo;
+	}
+
+	public int getNumeroPatas() {
+		return numeroPatas;
+	}
+
+	public void setNumeroPatas(int numeroPatas) {
+		this.numeroPatas = numeroPatas;
+	}
+
+	@Override
+	public String toString() {
+		return "Animal [colorPelo=" + colorPelo + ", numeroPatas=" + numeroPatas + "]";
+	}
+	
+	
+}

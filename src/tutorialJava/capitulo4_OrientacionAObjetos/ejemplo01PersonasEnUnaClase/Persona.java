@@ -13,11 +13,11 @@ public class Persona {
 		System.out.println("Se ha creado una persona");
 	}
 
-	public Persona (int newAlturaCm, int newPesoKg, String newNombre, String newColorPelo) {
-		alturaCm = newAlturaCm;
-		pesoKg = newPesoKg;
-		nombre = newNombre;
-		colorPelo = newColorPelo;
+	public Persona (int alturaCm, int pesoKg, String nombre, String colorPelo) {
+		this.alturaCm = alturaCm;
+		this.pesoKg = pesoKg;
+		this.nombre = nombre;
+		this.colorPelo = colorPelo;
 	}
 	
 	// Acciones que puede realizar una persona
@@ -28,32 +28,32 @@ public class Persona {
 	}
 	
 	
-	public void setAlturaCm (int newAlturaCm) {
-		alturaCm = newAlturaCm;
+	public void setAlturaCm (int alturaCm) {
+		this.alturaCm = alturaCm;
 	}
 	
 	public int getAlturaCm () {
 		return alturaCm;
 	}
 	
-	public void setPesoKg (int newPesoKg) {
-		pesoKg = newPesoKg;
+	public void setPesoKg (int pesoKg) {
+		this.pesoKg = pesoKg;
 	}
 	
 	public int getPesoKg () {
 		return pesoKg;
 	}
 	
-	public void setNombre (String newNombre) {
-		nombre = newNombre;
+	public void setNombre (String nombre) {
+		this.nombre = nombre;
 	}
 	
 	public String getNombre () {
 		return nombre;
 	}
 	
-	public void setColorPelo (String newColorPelo) {
-		colorPelo = newColorPelo;
+	public void setColorPelo (String colorPelo) {
+		this.colorPelo = colorPelo;
 	}
 	
 	public String getColorPelo () {
