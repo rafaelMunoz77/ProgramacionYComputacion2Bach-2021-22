@@ -2,8 +2,8 @@ package tutorialJava.capitulo4_OrientacionAObjetos.ejemplo02_animales;
 
 public class Animal {
 
-	private String colorPelo;
-	private int numeroPatas;
+	protected String colorPelo;
+	protected int numeroPatas;
 	
 	public Animal() {
 		super();

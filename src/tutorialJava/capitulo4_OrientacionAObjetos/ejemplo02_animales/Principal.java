@@ -19,6 +19,7 @@ public class Principal {
 		Oso yogui = new Oso();
 		yogui.setColorPelo("Marrón");
 		yogui.setNumeroPatas(2);
+		yogui.setNumeroGarras(4);
 		System.out.println(yogui.toString());
 	}
 
