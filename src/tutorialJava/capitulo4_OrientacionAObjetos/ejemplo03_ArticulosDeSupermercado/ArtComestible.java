@@ -13,11 +13,7 @@ public class ArtComestible extends Articulo {
 		this.fechaCaducidad = fechaCaducidad;
 	}
 
-	@Override
-	public String toString() {
-		return "ArtComestible [nombre=" + nombre + ", codigo=" + codigo + ", precio=" + precio + ", fechaCaducidad="
-				+ fechaCaducidad + "]";
-	}
+
 
 	public String getFechaCaducidad() {
 		return fechaCaducidad;

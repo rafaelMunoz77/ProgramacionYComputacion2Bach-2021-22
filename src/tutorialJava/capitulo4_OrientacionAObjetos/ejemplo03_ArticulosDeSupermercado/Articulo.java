@@ -25,13 +25,6 @@ public class Articulo {
 		this.precio = precio;
 	}
 
-	/**
-	 * 
-	 */
-	@Override
-	public String toString() {
-		return "Articulo [nombre=" + nombre + ", codigo=" + codigo + ", precio=" + precio + "]";
-	}
 
 	public String getNombre() {
 		return nombre;

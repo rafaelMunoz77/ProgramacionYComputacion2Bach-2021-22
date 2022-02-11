@@ -27,11 +27,7 @@ public class ArtLimpieza extends Articulo {
 		this.ignifugo = ignifugo;
 	}
 
-	@Override
-	public String toString() {
-		return "ArtLimpiza [nombre=" + nombre + ", codigo=" + codigo + ", precio=" + precio + ", ignifugo=" + ignifugo
-				+ "]";
-	}
+
 
 	public boolean isIgnifugo() {
 		return ignifugo;
