@@ -3,10 +3,16 @@ package tutorialJava.capitulo4_OrientacionAObjetos.ejemplo08_PrimerWindowBuilder
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
 public class PrimeraAplicacionWindowBuilder {
 
 	private JFrame frame;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -38,6 +44,20 @@ public class PrimeraAplicacionWindowBuilder {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		
+		JButton btnNewButton = new JButton("Picar aquí");
+		frame.getContentPane().add(btnNewButton, BorderLayout.SOUTH);
+		
+		textField = new JTextField();
+		frame.getContentPane().add(textField, BorderLayout.NORTH);
+		textField.setColumns(10);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+		
+		JTextArea textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
 	}
 
 }
