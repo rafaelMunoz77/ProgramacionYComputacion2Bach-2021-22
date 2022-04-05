@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Font;
 import java.awt.Insets;
@@ -19,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
 
 public class GestionAlumnos {
 
@@ -32,6 +35,8 @@ public class GestionAlumnos {
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
+	private JButton btnNewButton_5;
 
 	/**
 	 * Launch the application.
@@ -190,6 +195,24 @@ public class GestionAlumnos {
 			}
 		});
 		panel.add(btnNewButton_3);
+		
+		btnNewButton_4 = new JButton("");
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				guardar();
+			}
+		});
+		
+		btnNewButton_5 = new JButton("");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nuevo();
+			}
+		});
+		btnNewButton_5.setIcon(new ImageIcon(GestionAlumnos.class.getResource("/tutorialJava/capitulo7_InterfazGrafica/res/nuevo.png")));
+		panel.add(btnNewButton_5);
+		btnNewButton_4.setIcon(new ImageIcon(GestionAlumnos.class.getResource("/tutorialJava/capitulo7_InterfazGrafica/res/guardar.png")));
+		panel.add(btnNewButton_4);
 	}
 
 	/**
@@ -333,5 +356,55 @@ public class GestionAlumnos {
 			ex.printStackTrace();
 		}
 	}
+
 	
+	
+	/**
+	 * 
+	 */
+	private void guardar() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = (Connection) DriverManager.getConnection ("jdbc:mysql://localhost/alumnos?serverTimezone=UTC","root", "Abcdefgh.1");
+
+			Statement s = (Statement) conexion.createStatement(); 
+			
+			int registrosModificados = s.executeUpdate (
+					"update alumnos.alumno set nombre = '" + jtfNombre.getText() + "', " + 
+					"apellidos = '" + jtfApellidos.getText() + "', nif = '" + jtfNif.getText() + "' " +
+					"where id = " + jtfId.getText());
+		   
+			if (registrosModificados == 1) {
+				JOptionPane.showMessageDialog(null, "Guardado correctamente");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Error al guardar");
+			}
+			
+			// Cierre de los elementos
+			s.close();
+			conexion.close();
+		}
+		catch (ClassNotFoundException ex) {
+			System.out.println("Imposible acceder al driver Mysql");
+			ex.printStackTrace();
+		}
+		catch (SQLException ex) {
+			System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
+	
+
+	/**
+	 * 
+	 */
+	private void nuevo() {
+		this.jtfId.setText("0");
+		this.jtfNombre.setText("");
+		this.jtfApellidos.setText("");
+		this.jtfNif.setText("");
+	}
+	
+
 }
