@@ -54,6 +54,7 @@ public class GestionAlumnos {
 	 */
 	public GestionAlumnos() {
 		initialize();
+		mostrarPrimerAlumno();
 	}
 
 	/**
@@ -88,6 +89,7 @@ public class GestionAlumnos {
 		frame.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		jtfId = new JTextField();
+		jtfId.setEnabled(false);
 		GridBagConstraints gbc_jtfId = new GridBagConstraints();
 		gbc_jtfId.insets = new Insets(0, 0, 5, 0);
 		gbc_jtfId.fill = GridBagConstraints.HORIZONTAL;
@@ -166,9 +168,19 @@ public class GestionAlumnos {
 		panel.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("<");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mostrarAnterior();
+			}
+		});
 		panel.add(btnNewButton_1);
 		
 		btnNewButton_2 = new JButton(">");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mostrarSiguiente();
+			}
+		});
 		panel.add(btnNewButton_2);
 		
 		btnNewButton_3 = new JButton(">>");
@@ -249,4 +261,77 @@ public class GestionAlumnos {
 		}
 	}
 
+	
+	
+	
+	/**
+	 * 
+	 */
+	private void mostrarSiguiente() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = (Connection) DriverManager.getConnection ("jdbc:mysql://localhost/alumnos?serverTimezone=UTC","root", "Abcdefgh.1");
+
+			Statement s = (Statement) conexion.createStatement(); 
+			
+			ResultSet rs = s.executeQuery ("select * from alumnos.alumno where id > " + 
+				jtfId.getText() + " order by id limit 1");
+		   
+			// Navegación del objeto ResultSet
+			if (rs.next() == true) { 
+				jtfId.setText(rs.getString("id"));
+				jtfNombre.setText(rs.getString("nombre"));
+				jtfApellidos.setText(rs.getString("apellidos"));
+				jtfNif.setText(rs.getString("nif"));
+			}
+			// Cierre de los elementos
+			rs.close();
+			s.close();
+			conexion.close();
+		}
+		catch (ClassNotFoundException ex) {
+			System.out.println("Imposible acceder al driver Mysql");
+			ex.printStackTrace();
+		}
+		catch (SQLException ex) {
+			System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private void mostrarAnterior() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = (Connection) DriverManager.getConnection ("jdbc:mysql://localhost/alumnos?serverTimezone=UTC","root", "Abcdefgh.1");
+
+			Statement s = (Statement) conexion.createStatement(); 
+			
+			ResultSet rs = s.executeQuery ("select * from alumnos.alumno where id < " + 
+				jtfId.getText() + " order by desc id limit 1");
+		   
+			// Navegación del objeto ResultSet
+			if (rs.next() == true) { 
+				jtfId.setText(rs.getString("id"));
+				jtfNombre.setText(rs.getString("nombre"));
+				jtfApellidos.setText(rs.getString("apellidos"));
+				jtfNif.setText(rs.getString("nif"));
+			}
+			// Cierre de los elementos
+			rs.close();
+			s.close();
+			conexion.close();
+		}
+		catch (ClassNotFoundException ex) {
+			System.out.println("Imposible acceder al driver Mysql");
+			ex.printStackTrace();
+		}
+		catch (SQLException ex) {
+			System.out.println("Error en la ejecución SQL: " + ex.getMessage());
+			ex.printStackTrace();
+		}
+	}
+	
 }
